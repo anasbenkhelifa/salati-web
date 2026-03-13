@@ -1,0 +1,137 @@
+{
+  "nav": {
+    "features": "Fonctionnalités",
+    "preview": "Aperçu",
+    "download": "Télécharger",
+    "getApp": "Obtenir l'Appli"
+  },
+  "hero": {
+    "badge": "MAINTENANT DISPONIBLE SUR ANDROID",
+    "headline": "Votre Compagnon de Prière Nouvelle Génération",
+    "desc": "Restez en phase avec chaque prière. Un design élégant, des horaires précis et un puissant cœur hors ligne, tout est conçu pour la concentration et la tranquillité.",
+    "downloadBtn": "Télécharger maintenant",
+    "exploreBtn": "Explorer les Fonctionnalités",
+    "statOffline": "Hors Ligne",
+    "statAds": "Pubs"
+  },
+  "features": {
+    "title1": "Conçu",
+    "title2": "pour la",
+    "title3": "Clarté",
+    "subtitle": "Tout ce dont vous avez besoin pour suivre, vous orienter et vous préparer, avec une touche premium.",
+    "cards": {
+      "clock": {
+        "title": "Le Cœur d'Horloge Premium",
+        "subtitle": "Le Prochain Suivi de Prière",
+        "desc": "Un cœur précis qui vous maintient en avance sur chaque prière avec de magnifiques widgets consultables en un coup d'œil et de doux rappels."
+      },
+      "list": {
+        "title": "Liste des Horaires de Prière",
+        "subtitle": "100% Hors Ligne",
+        "desc": "Des horaires précis avec des méthodes auto-détectées et des options de calcul manuel. Aucune connexion Internet requise."
+      },
+      "qibla": {
+        "title": "Boussole Qibla",
+        "subtitle": "En Direct & Fiable",
+        "desc": "Trouvez instantanément la Qibla en utilisant les lectures de la boussole en direct et des conseils d'étalonnage pour plus de précision."
+      },
+      "adhan": {
+        "title": "Adhan au Premier Plan",
+        "subtitle": "Alertes Immersives",
+        "desc": "Entendez les rappels d'Adhan même lorsque vous êtes concentré sur l'application. Conçu pour être respectueux et clair."
+      },
+      "location": {
+        "title": "Recherche Globale d'Emplacement",
+        "subtitle": "Détection Auto & Manuelle",
+        "desc": "Recherchez n'importe quelle ville dans le monde ou laissez Salati détecter automatiquement votre position pour adapter les horaires instantanément."
+      },
+      "privacy": {
+        "title": "Confidentialité par Conception",
+        "subtitle": "Hors Ligne d'Abord",
+        "desc": "Les fonctionnalités de base fonctionnent entièrement hors ligne, vos données restent donc avec vous. Sécurisé et fiable."
+      }
+    }
+  },
+  "gallery": {
+    "title1": "Expérience",
+    "title2": "Fluide",
+    "subtitle": "Balayez pour voir les interfaces magnifiquement conçues de Salati.",
+    "shots": {
+      "dashboard": {
+        "label": "Tableau de Bord des Prières",
+        "desc": "Votre centre de prière quotidien en un coup d'œil"
+      },
+      "times": {
+        "label": "Horaires de Prière",
+        "desc": "Horaires précis, entièrement hors ligne"
+      },
+      "qibla": {
+        "label": "Boussole Qibla",
+        "desc": "Direction en direct avec étalonnage"
+      },
+      "settings": {
+        "label": "Paramètres",
+        "desc": "Préférences hautement personnalisables"
+      }
+    }
+  },
+  "stats": {
+    "title1": "Pourquoi",
+    "title2": "Salati ?",
+    "subtitle": "Construit de zéro pour être l'ultime compagnon de prière.",
+    "cards": {
+      "focus": {
+        "title": "Conçu pour la Concentration",
+        "desc": "Chaque détail est conçu pour éloigner les distractions et vous aider à rester connecté avec vos prières tout au long de la journée."
+      },
+      "privacy": {
+        "title": "Confidentialité Avant Tout",
+        "desc": "Pas de comptes, pas de suivi, pas de pubs. Vos données restent sur votre appareil et uniquement le vôtre, comme il se doit."
+      },
+      "offline": {
+        "title": "Hors Ligne par Défaut",
+        "desc": "Les fonctionnalités principales fonctionnent sans internet. Les horaires de prière sont calculés localement, donc vous n'êtes jamais sans guide."
+      }
+    },
+    "testimonial": {
+      "quote": "Salati a complètement transformé ma façon de suivre mes prières. La fiabilité hors ligne et les superbes widgets en font un élément essentiel de ma journée.",
+      "author": "Omar A.",
+      "role": "Utilisateur Quotidien"
+    },
+    "mission": "a été créé pour apporter tranquillité et précision à votre routine de prière quotidienne, sans compromis sur la confidentialité, le design ou la fiabilité."
+  },
+  "cta": {
+    "title": "Prêt à élever votre expérience de prière ?",
+    "subtitle": "Rejoignez des milliers d'utilisateurs qui ont fait de Salati leur compagnon quotidien. Pas de pubs, complètement hors ligne, magnifiquement conçu.",
+    "downloadNow": "Télécharger maintenant",
+    "viewFeatures": "Voir toutes les fonctionnalités"
+  },
+  "footer": {
+    "tagline": "Assistant de Prière",
+    "desc": "Le compagnon de prière premium conçu pour la concentration, la tranquillité et la fiabilité hors ligne.",
+    "product": {
+      "title": "Produit",
+      "features": "Fonctionnalités",
+      "screenshots": "Captures d'écran",
+      "download": "Télécharger",
+      "changelog": "Journal des Modifications"
+    },
+    "resources": {
+      "title": "Ressources",
+      "help": "Centre d'Aide",
+      "contact": "Contact",
+      "privacy": "Politique de Confidentialité",
+      "terms": "Conditions d'Utilisation"
+    },
+    "connect": {
+      "title": "Connecter",
+      "telegram": "Telegram",
+      "instagram": "Instagram",
+      "github": "GitHub",
+      "email": "Email"
+    },
+    "copyright": "© {{year}} Salati. Tous droits réservés.",
+    "designedBy": "Conçu par Anas"
+  },
+  "brandName": "Salati"
+}

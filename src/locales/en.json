@@ -1,0 +1,137 @@
+{
+  "nav": {
+    "features": "Features",
+    "preview": "Preview",
+    "download": "Download",
+    "getApp": "Get the App"
+  },
+  "hero": {
+    "badge": "NOW AVAILABLE ON ANDROID",
+    "headline": "Your Next-Gen Prayer Companion",
+    "desc": "Stay in sync with every prayer. Elegant design, precise times, and a powerful offline core, all crafted for focus and tranquility.",
+    "downloadBtn": "Download Now",
+    "exploreBtn": "Explore Features",
+    "statOffline": "Offline",
+    "statAds": "Ads"
+  },
+  "features": {
+    "title1": "Crafted",
+    "title2": "for",
+    "title3": "Clarity",
+    "subtitle": "Everything you need to track, orient, and prepare, with a premium feel.",
+    "cards": {
+      "clock": {
+        "title": "The Premium Clock Core",
+        "subtitle": "The Next Prayer Tracker",
+        "desc": "A precise core that keeps you ahead of every prayer with beautiful, glanceable widgets and gentle prompts."
+      },
+      "list": {
+        "title": "Prayer Times List",
+        "subtitle": "100% Offline",
+        "desc": "Accurate schedules with auto-detected methods and manual calculation options. No internet required."
+      },
+      "qibla": {
+        "title": "Qibla Compass",
+        "subtitle": "Live & Reliable",
+        "desc": "Find the Qibla instantly using live compass readings and calibration guidance for accuracy."
+      },
+      "adhan": {
+        "title": "Foreground Adhan",
+        "subtitle": "Immersive Alerts",
+        "desc": "Hear Adhan reminders even when focused on the app. Designed to be respectful and clear."
+      },
+      "location": {
+        "title": "Global Location Search",
+        "subtitle": "Auto-Detect & Manual",
+        "desc": "Search any city worldwide or let Salati auto-detect your location to tailor times instantly."
+      },
+      "privacy": {
+        "title": "Privacy by Design",
+        "subtitle": "Offline First",
+        "desc": "Core features work entirely offline so your data stays with you. Secure and dependable."
+      }
+    }
+  },
+  "gallery": {
+    "title1": "Fluid",
+    "title2": "Experience",
+    "subtitle": "Swipe to see the beautifully crafted interfaces of Salati.",
+    "shots": {
+      "dashboard": {
+        "label": "Prayer Dashboard",
+        "desc": "Your daily prayer hub at a glance"
+      },
+      "times": {
+        "label": "Prayer Times",
+        "desc": "Precise schedules, fully offline"
+      },
+      "qibla": {
+        "label": "Qibla Compass",
+        "desc": "Live direction with calibration"
+      },
+      "settings": {
+        "label": "Settings",
+        "desc": "Highly customizable preferences"
+      }
+    }
+  },
+  "stats": {
+    "title1": "Why",
+    "title2": "Salati?",
+    "subtitle": "Built from the ground up to be the ultimate prayer companion.",
+    "cards": {
+      "focus": {
+        "title": "Built for Focus",
+        "desc": "Every detail is designed to keep distractions away and help you stay connected with your prayers throughout the day."
+      },
+      "privacy": {
+        "title": "Privacy First",
+        "desc": "No accounts, no tracking, no ads. Your data stays on your device and yours alone, the way it should be."
+      },
+      "offline": {
+        "title": "Offline by Default",
+        "desc": "Core features work without internet. Prayer times are calculated locally so you're never left without guidance."
+      }
+    },
+    "testimonial": {
+      "quote": "Salati has completely transformed how I track my prayers. The offline reliability and gorgeous widgets make it an essential part of my day.",
+      "author": "Omar A.",
+      "role": "Daily User"
+    },
+    "mission": "was created to bring tranquility and precision to your daily prayer routine, with no compromises on privacy, design, or reliability."
+  },
+  "cta": {
+    "title": "Ready to elevate your prayer experience?",
+    "subtitle": "Join thousands of users who have made Salati their daily companion. No ads, completely offline, beautifully designed.",
+    "downloadNow": "Download Now",
+    "viewFeatures": "View all features"
+  },
+  "footer": {
+    "tagline": "Prayer Assistant",
+    "desc": "The premium prayer companion designed for focus, tranquility, and offline reliability.",
+    "product": {
+      "title": "Product",
+      "features": "Features",
+      "screenshots": "Screenshots",
+      "download": "Download",
+      "changelog": "Changelog"
+    },
+    "resources": {
+      "title": "Resources",
+      "help": "Help Center",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "connect": {
+      "title": "Connect",
+      "telegram": "Telegram",
+      "instagram": "Instagram",
+      "github": "GitHub",
+      "email": "Email"
+    },
+    "copyright": "© {{year}} Salati. All rights reserved.",
+    "designedBy": "Designed by Anas"
+  },
+  "brandName": "Salati"
+}
