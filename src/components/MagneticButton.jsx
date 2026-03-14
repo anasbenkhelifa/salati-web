@@ -1,38 +1,41 @@
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function MagneticButton({
   children,
-  className = "",
-  strength = 0.3,
-  as = "button",
-  ...props
+  strength = 0.2,
+  as: Component = 'button',
+  className = '',
+  ...rest
 }) {
   const ref = useRef(null);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouse = (e) => {
-    const { left, top, width, height } = ref.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) * strength;
-    const y = (e.clientY - top - height / 2) * strength;
-    setPos({ x, y });
+    const { clientX, clientY } = e;
+    const { height, width, left, top } = ref.current.getBoundingClientRect();
+    const middleX = clientX - (left + width / 2);
+    const middleY = clientY - (top + height / 2);
+    setPosition({ x: middleX * strength, y: middleY * strength });
   };
 
-  const reset = () => setPos({ x: 0, y: 0 });
+  const reset = () => {
+    setPosition({ x: 0, y: 0 });
+  };
 
-  const Component = as === "a" ? motion.a : motion.button;
+  const MotionComponent = motion(Component);
 
   return (
-    <Component
+    <MotionComponent
       ref={ref}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
-      animate={{ x: pos.x, y: pos.y }}
-      transition={{ type: "spring", stiffness: 350, damping: 15, mass: 0.5 }}
-      className={className}
-      {...props}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      className={`inline-block ${className}`}
+      {...rest}
     >
       {children}
-    </Component>
+    </MotionComponent>
   );
 }

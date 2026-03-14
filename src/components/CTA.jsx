@@ -43,7 +43,7 @@ export default function CTA() {
             >
               <MagneticButton
                 as="a"
-                href="https://github.com/anasbenkhelifa/Salati-App/releases/download/v2.0.4%2B2/app-release.apk"
+                href="https://github.com/anasbenkhelifa/Salati-App/releases/latest/download/app-release.apk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary btn-lg"
@@ -92,7 +92,6 @@ export default function CTA() {
                     pointerEvents: "none",
                   }}
                 />
-
                 {/* Text content above the glass layer */}
                 <span className="btn-text" style={{ position: "relative", zIndex: 1 }}>
                   {t("cta.viewFeatures")}
