@@ -37,3 +37,9 @@ pnpm-debug.log*
 .env
 .env.local
 .env*.local
+
+# AI/Agent configuration
+.agent/
+.agents/
+_agent/
+_agents/

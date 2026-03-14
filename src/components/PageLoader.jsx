@@ -48,15 +48,7 @@ export default function PageLoader({ onComplete }) {
             }
           >
             <div className="loader-logo">
-              <motion.div
-                className="loader-logo-inner"
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 3,
-                  ease: "linear",
-                  repeat: Infinity,
-                }}
-              />
+              <img src="/favicon.png" alt="Salati Logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} />
             </div>
             <motion.p
               className="loader-text"

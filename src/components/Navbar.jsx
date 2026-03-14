@@ -81,7 +81,7 @@ export default function Navbar() {
           <div className="navbar-inner" style={{ position: "relative", zIndex: 1 }}>
             <a href="#" className="navbar-brand">
               <div className="navbar-logo">
-                <div className="navbar-logo-inner" />
+                <img src="/favicon.png" alt="Salati Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div className="navbar-brand-text">
                 <p className="navbar-brand-name">{t("brandName")}</p>
