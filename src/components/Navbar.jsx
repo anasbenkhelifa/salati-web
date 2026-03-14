@@ -79,7 +79,14 @@ export default function Navbar() {
 
           {/* All navbar content sits above the glass layer */}
           <div className="navbar-inner" style={{ position: "relative", zIndex: 1 }}>
-            <a href="#" className="navbar-brand">
+            <a 
+              href="#" 
+              className="navbar-brand"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
               <div className="navbar-logo">
                 <img src="/favicon.png" alt="Salati Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
