@@ -44,7 +44,7 @@ export default function CTA() {
               <MagneticButton
                 as="a"
                 href="https://github.com/anasbenkhelifa/Salati-App/releases/latest/download/app-release.apk"
-                target="_blank"
+                onClick={(e) => { e.preventDefault(); window.location.href = "https://github.com/anasbenkhelifa/Salati-App/releases/latest/download/app-release.apk"; }}
                 rel="noopener noreferrer"
                 className="btn-primary btn-lg"
                 strength={0.2}
