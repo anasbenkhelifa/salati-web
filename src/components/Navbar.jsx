@@ -147,7 +147,9 @@ export default function Navbar() {
 
               <MagneticButton
                 as="a"
-                href="#download"
+                href="https://github.com/anasbenkhelifa/Salati-App/releases/download/v2.0.4%2B2/app-release.apk"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="navbar-cta"
                 strength={0.2}
               >
@@ -185,8 +187,10 @@ export default function Navbar() {
                   </a>
                 ))}
                 <a
-                  href="#download"
-                  className="navbar-mobile-cta"
+                  href="https://github.com/anasbenkhelifa/Salati-App/releases/download/v2.0.4%2B2/app-release.apk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
                   onClick={() => setMobileOpen(false)}
                 >
                   {t("nav.getApp")}

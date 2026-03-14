@@ -127,8 +127,10 @@ export default function Hero() {
             >
               <MagneticButton
                 as="a"
-                href="#download"
-                className="btn-primary"
+                href="https://github.com/anasbenkhelifa/Salati-App/releases/download/v2.0.4%2B2/app-release.apk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary btn-lg"
                 strength={0.2}
               >
                 <span className="btn-glow" />
