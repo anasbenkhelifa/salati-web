@@ -24,8 +24,7 @@ export default function PageLoader({ onComplete }) {
           initial={{ opacity: 1, filter: "blur(0px)" }}
           exit={{ 
             opacity: 0, 
-            scale: 1.1,
-            filter: "blur(10px)",
+            filter: "blur(5px)",
           }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
         >
@@ -39,7 +38,7 @@ export default function PageLoader({ onComplete }) {
             animate={
               phase === "loading"
                 ? { scale: 1, opacity: 1, rotateY: 0 }
-                : { scale: 20, opacity: 0, rotateY: 180 }
+                : { scale: 1.2, opacity: 0, rotateY: 0 }
             }
             transition={
               phase === "loading"
@@ -56,7 +55,7 @@ export default function PageLoader({ onComplete }) {
               animate={
                 phase === "loading"
                   ? { opacity: 1, y: 0, letterSpacing: "8px" }
-                  : { opacity: 0, scale: 1.5, letterSpacing: "20px" }
+                  : { opacity: 0, y: -10, letterSpacing: "12px" }
               }
               transition={{ duration: 0.8, ease: "easeOut" }}
             >

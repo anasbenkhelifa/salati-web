@@ -147,9 +147,8 @@ export default function Navbar() {
 
               <MagneticButton
                 as="a"
-                href="https://github.com/anasbenkhelifa/Salati-App/releases/download/v2.0.4%2B2/app-release.apk"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#download"
+                onClick={(e) => { e.preventDefault(); document.querySelector('#download')?.scrollIntoView({ behavior: 'smooth' }); }}
                 className="navbar-cta"
                 strength={0.2}
               >
@@ -187,11 +186,9 @@ export default function Navbar() {
                   </a>
                 ))}
                 <a
-                  href="https://github.com/anasbenkhelifa/Salati-App/releases/download/v2.0.4%2B2/app-release.apk"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#download"
                   className="btn-primary"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => { e.preventDefault(); setMobileOpen(false); document.querySelector('#download')?.scrollIntoView({ behavior: 'smooth' }); }}
                 >
                   {t("nav.getApp")}
                 </a>
