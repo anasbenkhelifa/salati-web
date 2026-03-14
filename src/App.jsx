@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import SmoothScroll from "./components/SmoothScroll";
 import PageLoader from "./components/PageLoader";
 import Plasma from "./components/react-bits/Plasma";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -64,6 +65,8 @@ function App() {
           <Footer />
         </SmoothScroll>
       </div>
+
+      <Analytics />
     </>
   );
 }
