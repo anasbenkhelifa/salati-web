@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -17,10 +18,10 @@ export default function Footer() {
     {
       title: t("footer.resources.title"),
       links: [
-        { label: t("footer.resources.privacy"), url: "#" },
-        { label: t("footer.resources.terms"), url: "#" },
-        { label: t("footer.resources.help"), url: "#" },
-        { label: t("footer.resources.contact"), url: "#" },
+        { label: t("footer.resources.privacy"), url: "/privacy", isRoute: true },
+        { label: t("footer.resources.terms"), url: "/terms", isRoute: true },
+        { label: t("footer.resources.help"), url: "/help", isRoute: true },
+        { label: t("footer.resources.contact"), url: "/contact", isRoute: true },
       ],
     },
     {
@@ -93,9 +94,15 @@ export default function Footer() {
               <ul className="footer-links-list">
                 {col.links.map((link, j) => (
                   <li key={j}>
-                    <a href={link.url} className="footer-link">
-                      {link.label}
-                    </a>
+                    {link.isRoute ? (
+                      <Link to={link.url} className="footer-link">
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a href={link.url} className="footer-link">
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

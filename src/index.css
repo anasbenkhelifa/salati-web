@@ -1692,3 +1692,236 @@ html.lenis body {
 .tajawal-bold { font-family: "Tajawal", var(--font-sans); font-weight: 700; font-style: normal; }
 .tajawal-extrabold { font-family: "Tajawal", var(--font-sans); font-weight: 800; font-style: normal; }
 .tajawal-black { font-family: "Tajawal", var(--font-sans); font-weight: 900; font-style: normal; }
+
+/* ═══════════════════════════════════════════════
+   LEGAL & RESOURCE PAGES (Privacy, Terms, Help, Contact)
+   ═══════════════════════════════════════════════ */
+.legal-page {
+  min-height: 100vh;
+  padding: 6rem 1.5rem 4rem;
+  display: flex;
+  justify-content: center;
+  background-color: var(--bg-main);
+  background-image: 
+    radial-gradient(circle at top right, rgba(16, 185, 129, 0.05), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(6, 182, 212, 0.05), transparent 40%);
+}
+
+.legal-container {
+  width: 100%;
+  max-width: 48rem;
+}
+
+.legal-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 3rem;
+  transition: color 0.2s ease;
+}
+
+.legal-back:hover {
+  color: var(--emerald-400);
+}
+
+.legal-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.legal-updated {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.legal-intro {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.legal-section {
+  margin-bottom: 2.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.legal-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.legal-section-content {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* FAQ / Help Center */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+[dir="rtl"] .faq-question {
+  text-align: right;
+}
+
+.faq-question:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.faq-chevron {
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faq-chevron--open {
+  transform: rotate(180deg);
+  color: var(--emerald-400);
+}
+
+.faq-answer {
+  overflow: hidden;
+}
+
+.faq-answer p {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Contact form */
+.contact-form {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-field label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-color: var(--emerald-400);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.contact-submit {
+  background: linear-gradient(135deg, var(--emerald-400), var(--cyan-400));
+  color: #0f172a;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.contact-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.contact-submit:active {
+  transform: translateY(1px);
+}
+
+.contact-success {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 0.5rem;
+  color: var(--emerald-400);
+  text-align: center;
+  font-weight: 500;
+}
+
+.contact-alt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-alt-label {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.contact-email-link {
+  color: var(--text-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-email-link:hover {
+  color: var(--cyan-400);
+}
