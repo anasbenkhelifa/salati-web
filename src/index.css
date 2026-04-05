@@ -1872,7 +1872,7 @@ html.lenis body {
 }
 
 .contact-submit {
-  background: linear-gradient(135deg, var(--emerald-400), var(--cyan-400));
+  background: var(--gradient-primary);
   color: #0f172a;
   font-weight: 600;
   border: none;

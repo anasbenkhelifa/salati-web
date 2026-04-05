@@ -6,16 +6,44 @@ import { useEffect, useState } from "react";
 export default function Contact() {
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // Important: Replace this with your actual Web3Forms Access Key
+  const ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // For now, just show the success message
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setLoading(true);
+    setError("");
+
+    const formData = new FormData(e.target);
+    formData.append("access_key", ACCESS_KEY);
+    formData.append("subject", "New Contact from Salati Website");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      
+      if (data.success) {
+        setSubmitted(true);
+        e.target.reset(); // clear form
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setError("Failed to send message. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -37,21 +65,31 @@ export default function Contact() {
           <p className="legal-intro">{t("contact.intro")}</p>
 
           <form className="contact-form" onSubmit={handleSubmit}>
+            <input type="hidden" name="from_name" value="Salati Contact Form" />
+
             <div className="contact-field">
               <label htmlFor="name">{t("contact.fields.name")}</label>
-              <input type="text" id="name" required />
+              <input type="text" id="name" name="name" required />
             </div>
             <div className="contact-field">
               <label htmlFor="email">{t("contact.fields.email")}</label>
-              <input type="email" id="email" required />
+              <input type="email" id="email" name="email" required />
             </div>
             <div className="contact-field">
               <label htmlFor="message">{t("contact.fields.message")}</label>
-              <textarea id="message" rows="5" required />
+              <textarea id="message" name="message" rows="5" required />
             </div>
-            <button type="submit" className="contact-submit">
-              {t("contact.fields.submit")}
+            <button type="submit" className="contact-submit" disabled={loading}>
+              {loading ? "Sending..." : t("contact.fields.submit")}
             </button>
+            {error && (
+              <motion.p
+                style={{ color: '#ef4444', textAlign: 'center', marginTop: '1rem', fontWeight: 500 }}
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              >
+                {error}
+              </motion.p>
+            )}
             {submitted && (
               <motion.p
                 className="contact-success"
