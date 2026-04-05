@@ -65,8 +65,8 @@ export default function Contact() {
 
           <div className="contact-alt">
             <p className="contact-alt-label">{t("contact.directEmail")}</p>
-            <a href="mailto:anas1benkhelifa@gmail.com" className="contact-email-link">
-              anas1benkhelifa@gmail.com
+            <a href="mailto:anas.benkhelifa@etu.univ-batna2.dz" className="contact-email-link">
+              anas.benkhelifa@etu.univ-batna2.dz
             </a>
           </div>
         </motion.div>

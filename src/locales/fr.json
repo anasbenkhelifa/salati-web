@@ -133,5 +133,90 @@
     "copyright": "© {{year}} Salati. Tous droits réservés.",
     "designedBy": "Conçu par Anas"
   },
-  "brandName": "Salati"
+  "brandName": "Salati",
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour : Mars 2026",
+    "intro": "Salati s'engage à protéger votre vie privée. Cette politique explique nos pratiques concernant la collecte, l'utilisation et la divulgation d'informations lorsque vous utilisez notre application mobile et notre site web.",
+    "sections": [
+      {
+        "title": "1. Informations que nous recueillons",
+        "content": "Salati fonctionne hors ligne. Nous n'exigeons pas la création d'un compte. L'application demande l'accès à la localisation uniquement pour calculer des horaires de prière précis et déterminer la direction de la Qibla localement sur votre appareil."
+      },
+      {
+        "title": "2. Comment nous utilisons vos données",
+        "content": "Toutes les données collectées (localisation, préférences) restent sur votre téléphone. Nous utilisons Firebase Analytics de manière anonyme pour comprendre l'utilisation de l'application et les crashs dans le but de l'améliorer."
+      },
+      {
+        "title": "3. Services Tiers",
+        "content": "Nous utilisons des services tiers comme Google Play Services et Firebase Crashlytics. Ces services peuvent collecter des informations pour identifier votre appareil. Nous n'avons aucun contrôle et n'assumons aucune responsabilité quant aux politiques de confidentialité des tiers."
+      },
+      {
+        "title": "4. Sécurité des données",
+        "content": "Étant donné que presque toutes les données sont stockées localement sur votre appareil, leur sécurité dépend des mécanismes de sécurité de votre téléphone. Assurez-vous qu'il est protégé par un mot de passe ou un verrouillage biométrique."
+      },
+      {
+        "title": "5. Modifications de cette politique",
+        "content": "Nous pourrons mettre à jour notre politique de temps à autre. Nous vous informerons de tout changement en publiant la nouvelle politique sur cette page."
+      }
+    ]
+  },
+  "terms": {
+    "title": "Conditions d'Utilisation",
+    "lastUpdated": "Dernière mise à jour : Mars 2026",
+    "intro": "Veuillez lire attentivement ces conditions d'utilisation avant d'utiliser Salati.",
+    "sections": [
+      {
+        "title": "1. Acceptation des conditions",
+        "content": "En téléchargeant ou en utilisant Salati, vous acceptez d'être lié par ces conditions. Si vous êtes en désaccord avec une partie des conditions, vous ne pouvez pas utiliser le Service."
+      },
+      {
+        "title": "2. Utilisation du service",
+        "content": "Salati est fourni 'tel quel' pour un usage personnel et non commercial. Bien que nous nous efforcions de fournir des heures de prière et une Qibla précises, des variations peuvent survenir selon les méthodes de calcul et les capteurs de l'appareil."
+      },
+      {
+        "title": "3. Responsabilités de l'utilisateur",
+        "content": "Vous êtes responsable de vous assurer que votre utilisation de l'application respecte les lois et règlements locaux. Vous ne devez pas tenter de décompiler ou d'extraire le code source de l'application."
+      },
+      {
+        "title": "4. Limites de responsabilité",
+        "content": "En aucun cas Salati ou ses développeurs ne seront responsables de dommages indirects, accessoires, spéciaux, consécutifs ou punitifs résultant de votre accès ou utilisation du service."
+      }
+    ]
+  },
+  "help": {
+    "title": "Centre d'Aide",
+    "intro": "Trouvez des réponses aux questions fréquentes et découvrez comment tirer le meilleur parti de Salati.",
+    "faqs": [
+      {
+        "q": "Pourquoi mes heures de prière sont-elles légèrement décalées ?",
+        "a": "Les heures peuvent varier selon la méthode de calcul (ex: UOIF, Ligue Mondiale Musulmane) et vos coordonnées GPS. Allez dans Paramètres > Méthode de calcul pour l'ajuster à celle de votre mosquée locale."
+      },
+      {
+        "q": "L'Adhan ne sonne pas en arrière-plan.",
+        "a": "Les systèmes Android restreignent souvent les processus en arrière-plan pour économiser la batterie. Pour garantir que l'Adhan sonne à l'heure, veuillez exclure Salati de l'optimisation de la batterie dans les paramètres de votre appareil."
+      },
+      {
+        "q": "Comment fonctionne la boussole Qibla ?",
+        "a": "La boussole utilise le magnétomètre et le GPS de votre appareil. Pour l'étalonner, déplacez votre téléphone en forme de '8'. Éloignez-vous des interférences magnétiques (aimants, électronique, fer) pour une meilleure précision."
+      },
+      {
+        "q": "L'application nécessite-t-elle une connexion internet ?",
+        "a": "Non ! Salati est conçue avant tout pour fonctionner hors ligne. Une fois votre position initialement récupérée (ou définie manuellement), l'application calculera les heures de prière localement pour toujours."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Nous Contacter",
+    "intro": "Vous avez une question, une remarque ou besoin d'assistance ? Nous serions ravis de vous aider.",
+    "fields": {
+      "name": "Votre Nom",
+      "email": "Adresse Email",
+      "message": "Comment pouvons-nous vous aider ?",
+      "submit": "Envoyer le Message"
+    },
+    "success": "Message envoyé ! Nous vous répondrons très bientôt.",
+    "directEmail": "Vous pouvez également nous joindre directement à :",
+    "social": "Suivez-nous pour les nouveautés :"
+  }
 }

@@ -133,5 +133,90 @@
     "copyright": "© {{year}} Salati. All rights reserved.",
     "designedBy": "Designed by Anas"
   },
-  "brandName": "Salati"
+  "brandName": "Salati",
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 2026",
+    "intro": "Salati is committed to protecting your privacy. This policy explains our practices regarding the collection, use, and disclosure of information when you use our mobile application and website.",
+    "sections": [
+      {
+        "title": "1. Information We Collect",
+        "content": "Salati operates as an offline-first application. We do not require you to create an account. The app requests location permissions solely to calculate accurate prayer times and determine the Qibla direction locally on your device."
+      },
+      {
+        "title": "2. How We Use Your Data",
+        "content": "Any data collected, such as your location or notification preferences, stays on your device. We use Firebase Analytics in an anonymized manner to understand app usage patterns and crashes to improve performance."
+      },
+      {
+        "title": "3. Third-Party Services",
+        "content": "We use third-party services like Google Play Services and Firebase Crashlytics. These services may collect information used to identify your device. We have no control over and assume no responsibility for the content or privacy policies of any third-party."
+      },
+      {
+        "title": "4. Data Security",
+        "content": "Since almost all data is stored locally on your device, the security of your data relies on your device's security mechanisms. Ensure your device is secured with a password or biometric lock."
+      },
+      {
+        "title": "5. Changes to This Privacy Policy",
+        "content": "We may update our Privacy Policy from time to time. We will notify you of any changes by publishing the new Privacy Policy on this page."
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: March 2026",
+    "intro": "Please read these Terms of Service carefully before using the Salati mobile application or website.",
+    "sections": [
+      {
+        "title": "1. Acceptance of Terms",
+        "content": "By downloading or using Salati, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not use the Service."
+      },
+      {
+        "title": "2. Use of Service",
+        "content": "Salati is provided 'as is' for personal, non-commercial use. While we strive to provide highly accurate prayer times and Qibla directions, variations can occur based on calculation methods and device sensors. You should use your best judgment."
+      },
+      {
+        "title": "3. User Responsibilities",
+        "content": "You are responsible for ensuring that your use of the App complies with local laws and regulations. You must not attempt to reverse engineer or extract the source code of the app."
+      },
+      {
+        "title": "4. Limitations of Liability",
+        "content": "In no event shall Salati or its developers be liable for any indirect, incidental, special, consequential or punitive damages resulting from your access to or use of the service."
+      }
+    ]
+  },
+  "help": {
+    "title": "Help Center",
+    "intro": "Find answers to frequently asked questions and learn how to get the most out of Salati.",
+    "faqs": [
+      {
+        "q": "Why are my prayer times slightly off?",
+        "a": "Prayer times can vary depending on the calculation method (e.g., MWL, ISNA, Egypt) and your exact GPS coordinates. Go to Settings > Calculation Method to adjust it to match your local mosque."
+      },
+      {
+        "q": "The Adhan is not playing in the background.",
+        "a": "Android systems often restrict background processes to save battery. To ensure the Adhan plays on time, please exclude Salati from Battery Optimization in your device settings."
+      },
+      {
+        "q": "How does the Qibla compass work?",
+        "a": "The compass uses your device's magnetometer and GPS. To calibrate it, move your phone in a 'figure 8' pattern. Keep away from magnetic interference (magnets, electronics, heavy metals) for the best accuracy."
+      },
+      {
+        "q": "Does the app require an internet connection?",
+        "a": "No! Salati is built offline-first. Once your location is initially fetched (or set manually), the app will calculate prayer times locally forever without needing the internet."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact Us",
+    "intro": "Have a question, feedback, or need support? We'd love to hear from you.",
+    "fields": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "message": "How can we help?",
+      "submit": "Send Message"
+    },
+    "success": "Message sent! We'll get back to you shortly.",
+    "directEmail": "You can also reach us directly at:",
+    "social": "Follow us for updates:"
+  }
 }
