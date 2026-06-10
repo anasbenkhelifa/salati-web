@@ -81,17 +81,48 @@ export default function CTA() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M10 126 H350
-                     M52 126 V62 M44 62 H60 M44 62 L52 40 L60 62
-                     M120 126 V100 Q120 68 180 60 Q240 68 240 100 V126
-                     M180 60 V44
-                     M308 126 V62 M300 62 H316 M300 62 L308 40 L316 62"
+                  d="M6 122
+                     H44
+                     V96 H40 V92 H44
+                     V66 H41 V62 H44
+                     L45 50 V46 L50 28 L55 46 V50
+                     L56 62 H59 V66 H56
+                     V92 H60 V96 H56
+                     V122
+                     H94
+                     V108
+                     C94 94 103 88 111 82
+                     L113 78 L115 82
+                     C123 88 132 94 132 108
+                     V122
+                     H140
+                     V104 H144 V100 H148
+                     V92
+                     C150 64 164 50 178 46
+                     L180 40 L182 46
+                     C196 50 210 64 212 92
+                     V100 H216 V104 H220
+                     V122
+                     H228
+                     V108
+                     C228 94 237 88 245 82
+                     L247 78 L249 82
+                     C257 88 266 94 266 108
+                     V122
+                     H304
+                     V96 H300 V92 H304
+                     V66 H301 V62 H304
+                     L305 50 V46 L310 28 L315 46 V50
+                     L316 62 H319 V66 H316
+                     V92 H320 V96 H316
+                     V122
+                     H354"
                 />
                 <path
                   ref={crescentRef}
                   className="cta-crescent"
                   fill="#fbbf24"
-                  d="M186 16 a11 11 0 1 0 6 20 a9 9 0 1 1 -6 -20"
+                  d="M185 10 a11 11 0 1 0 6 20 a9 9 0 1 1 -6 -20"
                 />
               </svg>
               <h3 className="cta-title">{t("cta.title")}</h3>
