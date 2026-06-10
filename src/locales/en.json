@@ -165,6 +165,11 @@
     "copyright": "© {{year}} Salati. All rights reserved.",
     "designedBy": "Designed by Anas"
   },
+  "faq": {
+    "title": "Questions, Answered",
+    "subtitle": "Everything you might want to know before you press download.",
+    "more": "More questions? Visit the Help Center"
+  },
   "brandName": "Salati",
   "privacy": {
     "title": "Privacy Policy",

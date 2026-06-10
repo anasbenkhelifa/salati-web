@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,6 +25,29 @@
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Ambient atmosphere triplets (R, G, B) — shift with the visitor's time of day.
+     Brand accents (buttons, gradients, text) stay constant; only ambience moves. */
+  --atmo-a: 16, 185, 129;
+  --atmo-b: 34, 211, 238;
+  --atmo-c: 59, 130, 246;
+}
+
+:root[data-time="dawn"] {
+  --atmo-a: 251, 146, 60;
+  --atmo-b: 251, 191, 36;
+  --atmo-c: 244, 114, 182;
+}
+
+:root[data-time="dusk"] {
+  --atmo-a: 249, 115, 22;
+  --atmo-b: 236, 72, 153;
+  --atmo-c: 168, 85, 247;
+}
+
+:root[data-time="night"] {
+  --atmo-a: 99, 102, 241;
+  --atmo-b: 34, 211, 238;
+  --atmo-c: 139, 92, 246;
 }
 
 :root[dir="rtl"] {
@@ -655,7 +676,7 @@ img {
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--atmo-a), 0.15), transparent 70%);
 }
 
 .hero-orb-2 {
@@ -663,7 +684,7 @@ img {
   height: 400px;
   top: 200px;
   right: -100px;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.1), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--atmo-b), 0.1), transparent 70%);
 }
 
 .hero-orb-3 {
@@ -671,7 +692,7 @@ img {
   height: 300px;
   bottom: 50px;
   left: -50px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--atmo-c), 0.08), transparent 70%);
 }
 
 .hero-grid {
@@ -879,7 +900,7 @@ img {
 .hero-phone-glow {
   position: absolute;
   inset: -40px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--atmo-a), 0.15), transparent 70%);
   border-radius: 50%;
   filter: blur(40px);
 }
@@ -1027,7 +1048,7 @@ img {
   height: 400px;
   bottom: -100px;
   left: -100px;
-  background: rgba(34, 211, 238, 0.08);
+  background: rgba(var(--atmo-b), 0.08);
 }
 
 .features-orb-2 {
@@ -1035,7 +1056,7 @@ img {
   height: 350px;
   top: -80px;
   right: -80px;
-  background: rgba(16, 185, 129, 0.08);
+  background: rgba(var(--atmo-a), 0.08);
 }
 
 .features-grid {
@@ -1172,7 +1193,7 @@ img {
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.06), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--atmo-a), 0.06), transparent 70%);
   filter: blur(60px);
 }
 
@@ -1326,7 +1347,7 @@ img {
 .showcase-phone-glow {
   position: absolute;
   inset: -50px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--atmo-a), 0.18), transparent 70%);
   border-radius: 50%;
   filter: blur(40px);
   pointer-events: none;
@@ -1448,8 +1469,8 @@ img {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(500px circle at 30% 50%, rgba(16, 185, 129, 0.04), transparent),
-    radial-gradient(400px circle at 70% 50%, rgba(34, 211, 238, 0.04), transparent);
+    radial-gradient(500px circle at 30% 50%, rgba(var(--atmo-a), 0.04), transparent),
+    radial-gradient(400px circle at 70% 50%, rgba(var(--atmo-b), 0.04), transparent);
 }
 
 .why-heading-word {
@@ -1622,7 +1643,7 @@ img {
   height: 380px;
   top: -160px;
   left: -100px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.22), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--atmo-a), 0.22), transparent 70%);
   animation: cta-drift-1 14s ease-in-out infinite alternate;
 }
 
@@ -1631,7 +1652,7 @@ img {
   height: 320px;
   bottom: -140px;
   right: -80px;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--atmo-b), 0.18), transparent 70%);
   animation: cta-drift-2 18s ease-in-out infinite alternate;
 }
 
@@ -2707,6 +2728,118 @@ html.lenis body {
 
 .cta-crescent {
   filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.7));
+}
+
+/* ═══════════════════════════════════════════════
+   FAQ — LANDING SECTION
+   ═══════════════════════════════════════════════ */
+.faq-section {
+  position: relative;
+  padding: 6rem 0;
+}
+
+.faq-landing-list {
+  max-width: 46rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.faq-landing-item {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  overflow: hidden;
+  transition: border-color 0.35s ease, background 0.35s ease;
+}
+
+.faq-landing-item:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.faq-landing-item-open {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: var(--bg-card-hover);
+}
+
+.faq-landing-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: start;
+  color: var(--text-primary);
+}
+
+.faq-landing-num {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+}
+
+.faq-landing-q-text {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.faq-landing-chevron {
+  display: inline-flex;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.faq-landing-item-open .faq-landing-chevron {
+  color: var(--accent-emerald);
+}
+
+.faq-landing-answer {
+  overflow: hidden;
+}
+
+.faq-landing-answer p {
+  padding: 0 1.5rem 1.5rem calc(1.5rem + 0.8125rem + 1rem);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+[dir="rtl"] .faq-landing-answer p {
+  padding: 0 calc(1.5rem + 0.8125rem + 1rem) 1.5rem 1.5rem;
+}
+
+.faq-landing-more {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.faq-landing-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.3s ease, gap 0.3s ease;
+}
+
+.faq-landing-more-link:hover {
+  color: var(--accent-emerald);
+  gap: 0.75rem;
+}
+
+[dir="rtl"] .faq-landing-arrow {
+  transform: scaleX(-1);
 }
 
 /* ═══════════════════════════════════════════════

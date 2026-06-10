@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+﻿import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,22 +10,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 const screenshots = [
   {
-    src: "/prayer-dashboard.jpg",
+    src: "/prayer-dashboard.webp",
     labelKey: "gallery.shots.dashboard.label",
     descKey: "gallery.shots.dashboard.desc",
   },
   {
-    src: "/prayer-times.jpg",
+    src: "/prayer-times.webp",
     labelKey: "gallery.shots.times.label",
     descKey: "gallery.shots.times.desc",
   },
   {
-    src: "/qibla.jpg",
+    src: "/qibla.webp",
     labelKey: "gallery.shots.qibla.label",
     descKey: "gallery.shots.qibla.desc",
   },
   {
-    src: "/settings.jpg",
+    src: "/settings.webp",
     labelKey: "gallery.shots.settings.label",
     descKey: "gallery.shots.settings.desc",
   },

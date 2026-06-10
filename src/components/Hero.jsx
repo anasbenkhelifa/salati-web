@@ -29,10 +29,10 @@ export default function Hero() {
 
   const [currentScreen, setCurrentScreen] = useState(0);
   const screens = [
-    "/prayer-dashboard.jpg",
-    "/prayer-times.jpg",
-    "/qibla.jpg",
-    "/settings.jpg",
+    "/prayer-dashboard.webp",
+    "/prayer-times.webp",
+    "/qibla.webp",
+    "/settings.webp",
   ];
 
   useEffect(() => {

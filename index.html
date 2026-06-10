@@ -53,13 +53,52 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why are my prayer times slightly off?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Prayer times can vary depending on the calculation method (e.g., MWL, ISNA, Egypt) and your exact GPS coordinates. Go to Settings > Calculation Method to adjust it to match your local mosque."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "The Adhan is not playing in the background.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Android systems often restrict background processes to save battery. To ensure the Adhan plays on time, please exclude Salati from Battery Optimization in your device settings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the Qibla compass work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The compass uses your device's magnetometer and GPS. To calibrate it, move your phone in a 'figure 8' pattern. Keep away from magnetic interference (magnets, electronics, heavy metals) for the best accuracy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the app require an internet connection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No! Salati is built offline-first. Once your location is initially fetched (or set manually), the app will calculate prayer times locally forever without needing the internet."
+        }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap"
     rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
-    rel="stylesheet">
+  <link rel="preload" as="image" href="/prayer-dashboard.webp">
 </head>
 
 <body>

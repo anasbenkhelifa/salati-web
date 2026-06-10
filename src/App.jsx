@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -14,13 +14,57 @@ import Marquee from "./components/Marquee";
 import PrayerJourney from "./components/PrayerJourney";
 import CursorGlow from "./components/CursorGlow";
 import BackToTop from "./components/BackToTop";
-import Plasma from "./components/react-bits/Plasma";
+import FAQ from "./components/FAQ";
+// WebGL background loads on demand — it's atmosphere, not content
+const Plasma = lazy(() => import("./components/react-bits/Plasma"));
 import { Analytics } from "@vercel/analytics/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getSunTimes, estimateCoords } from "./lib/sunTimes";
+
+// Time-of-day atmosphere: the ambient palette follows the visitor's actual
+// sun — sunrise/sunset computed astronomically from a timezone-based location
+// estimate, so the periods track the seasons anywhere on Earth.
+const getDayPeriod = () => {
+  const now = new Date();
+  const { lat, lng } = estimateCoords();
+  const times = getSunTimes(now, lat, lng);
+
+  if (!times) {
+    // Polar day/night — fall back to fixed clock buckets
+    const h = now.getHours();
+    if (h >= 4 && h < 7) return "dawn";
+    if (h >= 7 && h < 17) return "day";
+    if (h >= 17 && h < 20) return "dusk";
+    return "night";
+  }
+
+  const t = now.getTime();
+  const rise = times.sunrise.getTime();
+  const set = times.sunset.getTime();
+  const MIN = 60 * 1000;
+  if (t >= rise - 75 * MIN && t < rise + 30 * MIN) return "dawn";
+  if (t >= rise + 30 * MIN && t < set - 45 * MIN) return "day";
+  if (t >= set - 45 * MIN && t < set + 45 * MIN) return "dusk";
+  return "night";
+};
+
+const PLASMA_COLORS = {
+  dawn: "#E8A05A",
+  day: "#1CCCCD",
+  dusk: "#F0735A",
+  night: "#7C82F0",
+};
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [period, setPeriod] = useState(getDayPeriod);
   const { i18n } = useTranslation();
+
+  useEffect(() => {
+    document.documentElement.dataset.time = period;
+    const id = setInterval(() => setPeriod(getDayPeriod()), 5 * 60 * 1000);
+    return () => clearInterval(id);
+  }, [period]);
 
   useEffect(() => {
     document.documentElement.dir = i18n.dir();
@@ -61,14 +105,17 @@ function App() {
         zIndex: 0,
         pointerEvents: 'none'
       }}>
-        <Plasma
-          color="#1CCCCD"
-          speed={1}
-          direction="forward"
-          scale={1}
-          opacity={0.4}
-          mouseInteractive={false}
-        />
+        <Suspense fallback={null}>
+          <Plasma
+            key={period}
+            color={PLASMA_COLORS[period]}
+            speed={1}
+            direction="forward"
+            scale={1}
+            opacity={0.4}
+            mouseInteractive={false}
+          />
+        </Suspense>
       </div>
 
       {/* Film grain overlay for a premium finish */}
@@ -91,6 +138,7 @@ function App() {
             <PrayerJourney />
             <Gallery />
             <WhySalati />
+            <FAQ />
             <CTA />
           </main>
           <Footer />
