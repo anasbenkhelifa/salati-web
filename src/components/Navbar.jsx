@@ -1,6 +1,6 @@
 import { Menu, X } from "lucide-react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import MagneticButton from "./MagneticButton";
 import GlassSurface from "./react-bits/GlassSurface";
@@ -10,10 +10,28 @@ export default function Navbar() {
   const { t, i18n } = useTranslation();
   const [elevated, setElevated] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setElevated(latest > 10);
   });
+
+  // Scrollspy — highlight the nav link of the section in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-35% 0px -55% 0px" }
+    );
+    ["features", "preview", "download"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   const navLinks = [
     { label: t("nav.features"), href: "#features" },
@@ -106,7 +124,13 @@ export default function Navbar() {
 
             <nav className="navbar-links">
               {navLinks.map((link) => (
-                <a key={link.href} href={link.href} className="navbar-link">
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`navbar-link ${
+                    activeSection === link.href.slice(1) ? "navbar-link-active" : ""
+                  }`}
+                >
                   <span>{link.label}</span>
                   <span className="navbar-link-underline" />
                 </a>

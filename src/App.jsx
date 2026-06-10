@@ -12,6 +12,8 @@ import PageLoader from "./components/PageLoader";
 import ScrollProgress from "./components/ScrollProgress";
 import Marquee from "./components/Marquee";
 import PrayerJourney from "./components/PrayerJourney";
+import CursorGlow from "./components/CursorGlow";
+import BackToTop from "./components/BackToTop";
 import Plasma from "./components/react-bits/Plasma";
 import { Analytics } from "@vercel/analytics/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -27,6 +29,19 @@ function App() {
     const id = setTimeout(() => ScrollTrigger.refresh(), 150);
     return () => clearTimeout(id);
   }, [i18n.language]);
+
+  // A small wave goodbye when the tab loses focus
+  useEffect(() => {
+    const original = document.title;
+    const onVisibility = () => {
+      document.title = document.hidden ? "🌙 Salati — see you soon" : original;
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      document.title = original;
+    };
+  }, []);
 
   const handleLoadComplete = useCallback(() => {
     setLoaded(true);
@@ -59,6 +74,9 @@ function App() {
       {/* Film grain overlay for a premium finish */}
       <div className="grain-overlay" aria-hidden="true" />
 
+      {/* Ambient cursor light (desktop only) */}
+      <CursorGlow />
+
       <div
         className={`app-wrapper ${loaded ? "app-loaded" : "app-loading"}`}
         style={{ position: 'relative', zIndex: 1 }}
@@ -76,6 +94,7 @@ function App() {
             <CTA />
           </main>
           <Footer />
+          <BackToTop />
         </SmoothScroll>
       </div>
 

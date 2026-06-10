@@ -121,6 +121,9 @@ export default function Footer() {
           <p className="footer-copyright">
             {t("footer.copyright").replace("{{year}}", new Date().getFullYear())}
           </p>
+          <p className="footer-designed">
+            {t("footer.designedBy")} <span className="footer-heart">♥</span>
+          </p>
           <button
             className="footer-back-top"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
