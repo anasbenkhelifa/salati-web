@@ -5,6 +5,7 @@ export default function SpotlightCard({
   children,
   className = "",
   spotlightColor = "rgba(16, 185, 129, 0.15)",
+  delay = 0,
 }) {
   const ref = useRef(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
@@ -28,7 +29,7 @@ export default function SpotlightCard({
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Spotlight effect */}
       <div

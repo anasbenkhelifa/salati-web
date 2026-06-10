@@ -1,11 +1,8 @@
-import { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform, useInView, animate } from "framer-motion";
 import SpotlightCard from "./react-bits/SpotlightCard";
+import AnimatedTitle from "./AnimatedTitle";
 import { useTranslation } from "react-i18next";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const values = [
   {
@@ -25,46 +22,126 @@ const values = [
   },
 ];
 
+const counters = [
+  { value: 5, suffix: "", labelKey: "stats.counters.prayers" },
+  { value: 3, suffix: "", labelKey: "stats.counters.languages" },
+  { value: 100, suffix: "%", labelKey: "stats.counters.offline" },
+  { value: 0, suffix: "", labelKey: "stats.counters.ads" },
+];
+
+function Counter({ value, suffix }) {
+  const { i18n } = useTranslation();
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(0, value, {
+      duration: 1.8,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setDisplay(Math.round(v)),
+    });
+    return () => controls.stop();
+  }, [inView, value]);
+
+  const formatted = new Intl.NumberFormat(
+    i18n.language?.startsWith("ar") ? "ar-EG" : i18n.language || "en"
+  ).format(display);
+
+  return (
+    <span ref={ref} className="counter-number">
+      {formatted}
+      {suffix}
+    </span>
+  );
+}
+
+function MissionWord({ progress, range, children }) {
+  const opacity = useTransform(progress, range, [0.12, 1]);
+  return (
+    <motion.span className="mission-word" style={{ opacity }}>
+      {children}{" "}
+    </motion.span>
+  );
+}
+
+function MissionReveal({ brand, text }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 0.85", "end 0.5"],
+  });
+  const words = text.split(" ");
+
+  return (
+    <p ref={ref} className="why-mission-text">
+      <span className="why-mission-highlight">{brand}</span>{" "}
+      {words.map((word, i) => (
+        <MissionWord
+          key={i}
+          progress={scrollYProgress}
+          range={[i / words.length, (i + 1) / words.length]}
+        >
+          {word}
+        </MissionWord>
+      ))}
+    </p>
+  );
+}
+
 export default function WhySalati() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
-  const headingRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(headingRef.current.querySelectorAll(".why-heading-word"), {
-        y: 50,
-        opacity: 0,
-        rotateX: -30,
-        stagger: 0.08,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headingRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  // Giant editorial text strips drifting horizontally with scroll
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const giantX1 = useTransform(scrollYProgress, [0, 1], ["4%", "-6%"]);
+  const giantX2 = useTransform(scrollYProgress, [0, 1], ["-6%", "4%"]);
+
+  const brand = t("brandName");
+  const giantText = Array(6).fill(brand).join("  ✦  ");
 
   return (
     <section ref={sectionRef} className="why-section">
       <div className="why-bg" />
 
-      <div className="section-container">
-        <div ref={headingRef} className="section-header">
-          <h2 className="section-title">
-            {[t("stats.title1"), t("stats.title2")].map((word, i) => (
-              <span key={i} className="why-heading-word" style={{ display: 'inline-block' }}>
-                {word}{" "}
-              </span>
-            ))}
-          </h2>
+      {/* Outlined giant text, parallaxing in opposite directions */}
+      <div className="why-giant" aria-hidden="true">
+        <motion.div className="why-giant-row" style={{ x: giantX1 }}>
+          {giantText}
+        </motion.div>
+        <motion.div className="why-giant-row why-giant-row-2" style={{ x: giantX2 }}>
+          {giantText}
+        </motion.div>
+      </div>
+
+      <div className="section-container why-content">
+        <div className="section-header">
+          <AnimatedTitle text={`${t("stats.title1")} ${t("stats.title2")}`} />
           <p className="section-subtitle">
             {t("stats.subtitle")}
           </p>
+        </div>
+
+        {/* Animated counters */}
+        <div className="why-counters">
+          {counters.map((c, i) => (
+            <motion.div
+              key={i}
+              className="counter-item"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Counter value={c.value} suffix={c.suffix} />
+              <span className="counter-label">{t(c.labelKey)}</span>
+            </motion.div>
+          ))}
         </div>
 
         <div className="why-grid">
@@ -92,19 +169,10 @@ export default function WhySalati() {
           ))}
         </div>
 
-        {/* Mission statement */}
-        <motion.div
-          className="why-mission"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-        >
-          <p className="why-mission-text">
-            <span className="why-mission-highlight">{t("brandName")}</span>{" "}
-            {t("stats.mission")}
-          </p>
-        </motion.div>
+        {/* Mission statement — scroll-driven word reveal */}
+        <div className="why-mission">
+          <MissionReveal brand={t("brandName")} text={t("stats.mission")} />
+        </div>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,10 +20,12 @@ export default function Hero() {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const opacity = useTransform(scrollYProgress, [0.6, 1], [1, 0]);
-  const phoneY = useTransform(scrollYProgress, [0, 1], [0, -40]);
-  const phoneRotate = useTransform(scrollYProgress, [0, 1], [0, -5]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const opacity = useTransform(scrollYProgress, [0.5, 0.95], [1, 0]);
+  const phoneY = useTransform(scrollYProgress, [0, 1], [0, -160]);
+  const phoneRotate = useTransform(scrollYProgress, [0, 1], [0, -12]);
+  const phoneScale = useTransform(scrollYProgress, [0, 1], [1, 0.88]);
+  const patternY = useTransform(scrollYProgress, [0, 1], [0, 180]);
 
   const [currentScreen, setCurrentScreen] = useState(0);
   const screens = [
@@ -38,6 +40,39 @@ export default function Hero() {
       setCurrentScreen((prev) => (prev + 1) % screens.length);
     }, 4000);
     return () => clearInterval(interval);
+  }, [currentScreen]);
+
+  // 3D mouse tilt on the phone (desktop pointers only)
+  const tiltX = useSpring(useMotionValue(0), { stiffness: 150, damping: 18 });
+  const tiltY = useSpring(useMotionValue(0), { stiffness: 150, damping: 18 });
+
+  const handlePhoneMove = (e) => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    tiltY.set(px * 14);
+    tiltX.set(-py * 10);
+  };
+
+  const handlePhoneLeave = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+  };
+
+  // Mouse-reactive parallax. Orbs 2/3 get scroll-scrubbed x tweens, so the
+  // mouse only drives orb 1 and the orbs container — no property conflicts.
+  useEffect(() => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const orbMove = gsap.quickTo(".hero-orb-1", "x", { duration: 1.4, ease: "power3.out" });
+    const layerMove = gsap.quickTo(".hero-orbs", "x", { duration: 1.8, ease: "power3.out" });
+    const onMove = (e) => {
+      const nx = e.clientX / window.innerWidth - 0.5;
+      orbMove(nx * 60);
+      layerMove(nx * -22);
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
   useEffect(() => {
@@ -78,6 +113,9 @@ export default function Hero() {
 
   return (
     <section ref={sectionRef} className="hero-section">
+      {/* Islamic geometric pattern layer with scroll parallax */}
+      <motion.div className="hero-pattern" style={{ y: patternY }} aria-hidden="true" />
+
       {/* Parallax gradient orbs */}
       <div className="hero-orbs">
         <div className="hero-orb hero-orb-1" />
@@ -92,9 +130,18 @@ export default function Hero() {
         <div className="hero-content">
           {/* Left: Text */}
           <motion.div className="hero-text" style={{ y }}>
+            <motion.div
+              className="hero-badge"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="hero-badge-dot" />
+              {t("hero.badge")}
+            </motion.div>
             <h1 className="hero-headline">
               <motion.span
-                className="hero-headline-salati hero-headline-salati--big"
+                className="hero-headline-salati hero-headline-salati--big hero-headline-shimmer"
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -203,40 +250,59 @@ export default function Hero() {
           <motion.div
             ref={phoneRef}
             className="hero-phone-container"
-            style={{ y: phoneY, rotate: phoneRotate }}
+            style={{ y: phoneY, rotate: phoneRotate, scale: phoneScale }}
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="hero-phone-glow" />
-            <GlareHover
-              className="hero-phone"
-              background="transparent"
-              borderColor="transparent"
-              glareColor="#ffffff"
-              glareOpacity={0.15}
-              glareSize={150}
-              borderRadius="40px"
-              style={{ padding: 0 }}
+            <motion.div
+              className="hero-phone-tilt"
+              style={{ rotateX: tiltX, rotateY: tiltY, transformPerspective: 900 }}
+              onMouseMove={handlePhoneMove}
+              onMouseLeave={handlePhoneLeave}
             >
-              <div className="hero-phone-notch" />
-              <div className="hero-phone-screen">
-                {screens.map((src, i) => (
-                  <motion.img
-                    key={i}
-                    src={src}
-                    alt={`Salati app screen ${i + 1}`}
-                    className="hero-phone-screenshot"
-                    initial={false}
-                    animate={{
-                      opacity: currentScreen === i ? 1 : 0,
-                      scale: currentScreen === i ? 1 : 1.05,
-                    }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                  />
-                ))}
-              </div>
-            </GlareHover>
+              <GlareHover
+                className="hero-phone"
+                background="transparent"
+                borderColor="transparent"
+                glareColor="#ffffff"
+                glareOpacity={0.15}
+                glareSize={150}
+                borderRadius="40px"
+                style={{ padding: 0 }}
+              >
+                <div className="hero-phone-notch" />
+                <div className="hero-phone-screen">
+                  {screens.map((src, i) => (
+                    <motion.img
+                      key={i}
+                      src={src}
+                      alt={`Salati app screen ${i + 1}`}
+                      className="hero-phone-screenshot"
+                      initial={false}
+                      animate={{
+                        opacity: currentScreen === i ? 1 : 0,
+                        scale: currentScreen === i ? 1 : 1.05,
+                      }}
+                      transition={{ duration: 0.8, ease: "easeInOut" }}
+                    />
+                  ))}
+                </div>
+              </GlareHover>
+            </motion.div>
+            {/* Screen cycle dots */}
+            <div className="hero-phone-dots">
+              {screens.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={`hero-phone-dot ${currentScreen === i ? "hero-phone-dot-active" : ""}`}
+                  onClick={() => setCurrentScreen(i)}
+                  aria-label={`Show app screen ${i + 1}`}
+                />
+              ))}
+            </div>
             {/* Floating elements around phone */}
             <motion.div
               className="hero-float hero-float-1"

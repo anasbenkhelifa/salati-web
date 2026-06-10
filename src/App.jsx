@@ -9,8 +9,12 @@ import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import SmoothScroll from "./components/SmoothScroll";
 import PageLoader from "./components/PageLoader";
+import ScrollProgress from "./components/ScrollProgress";
+import Marquee from "./components/Marquee";
+import PrayerJourney from "./components/PrayerJourney";
 import Plasma from "./components/react-bits/Plasma";
 import { Analytics } from "@vercel/analytics/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -19,6 +23,9 @@ function App() {
   useEffect(() => {
     document.documentElement.dir = i18n.dir();
     document.documentElement.lang = i18n.language;
+    // Layout (and RTL direction) changes shift every trigger position
+    const id = setTimeout(() => ScrollTrigger.refresh(), 150);
+    return () => clearTimeout(id);
   }, [i18n.language]);
 
   const handleLoadComplete = useCallback(() => {
@@ -49,15 +56,21 @@ function App() {
         />
       </div>
 
+      {/* Film grain overlay for a premium finish */}
+      <div className="grain-overlay" aria-hidden="true" />
+
       <div
         className={`app-wrapper ${loaded ? "app-loaded" : "app-loading"}`}
         style={{ position: 'relative', zIndex: 1 }}
       >
         <SmoothScroll>
+          <ScrollProgress />
           <Navbar />
           <main>
             <Hero />
+            <Marquee />
             <Features />
+            <PrayerJourney />
             <Gallery />
             <WhySalati />
             <CTA />

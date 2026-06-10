@@ -14,6 +14,16 @@
     "statOffline": "Offline",
     "statAds": "Ads"
   },
+  "marquee": {
+    "times": "Precise Prayer Times",
+    "qibla": "Live Qibla Compass",
+    "offline": "100% Offline",
+    "noAds": "Zero Ads",
+    "adhan": "Adhan Alerts",
+    "widgets": "Beautiful Widgets",
+    "languages": "3 Languages",
+    "privacy": "Privacy First"
+  },
   "features": {
     "title1": "Crafted",
     "title2": "for",
@@ -52,6 +62,17 @@
       }
     }
   },
+  "journey": {
+    "title": "From Fajr to Isha",
+    "subtitle": "Five moments of stillness — follow the sun across your day while Salati keeps every prayer on time.",
+    "prayers": {
+      "fajr": { "name": "Fajr", "time": "Dawn" },
+      "dhuhr": { "name": "Dhuhr", "time": "Midday" },
+      "asr": { "name": "Asr", "time": "Afternoon" },
+      "maghrib": { "name": "Maghrib", "time": "Sunset" },
+      "isha": { "name": "Isha", "time": "Night" }
+    }
+  },
   "gallery": {
     "title1": "Fluid",
     "title2": "Experience",
@@ -79,6 +100,12 @@
     "title1": "Why",
     "title2": "Salati?",
     "subtitle": "Built from the ground up to be the ultimate prayer companion.",
+    "counters": {
+      "prayers": "Daily Prayers Covered",
+      "languages": "Languages Supported",
+      "offline": "Offline Core",
+      "ads": "Ads. Ever."
+    },
     "cards": {
       "focus": {
         "title": "Built for Focus",
@@ -104,7 +131,12 @@
     "title": "Ready to elevate your prayer experience?",
     "subtitle": "Join thousands of users who have made Salati their daily companion. No ads, completely offline, beautifully designed.",
     "downloadNow": "Download Now",
-    "viewFeatures": "View all features"
+    "viewFeatures": "View all features",
+    "pills": {
+      "free": "Free forever",
+      "noAds": "No ads, no tracking",
+      "offline": "Works offline"
+    }
   },
   "footer": {
     "tagline": "Prayer Assistant",

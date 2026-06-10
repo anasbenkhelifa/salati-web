@@ -1113,38 +1113,197 @@ img {
   filter: blur(60px);
 }
 
-.gallery-grid {
+/* Mobile / tablet stacked cards */
+.gallery-stack {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 2.5rem;
   max-width: 70rem;
-  margin: 0 auto;
-  perspective: 1200px;
 }
 
 @media (min-width: 640px) {
-  .gallery-grid {
+  .gallery-stack {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1024px) {
-  .gallery-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .gallery-stack {
+    display: none;
+  }
+}
+
+/* Pinned showcase (desktop) */
+.gallery-pin {
+  position: relative;
+}
+
+.gallery-showcase {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+
+  /* Breathing room after the pinned journey section so the two pins never chain */
+  .gallery-section {
+    margin-top: 14vh;
   }
 
-  /* Stagger the cards vertically on desktop */
-  .gallery-card:nth-child(2) {
-    transform: translateY(2rem);
+  .gallery-pin {
+    height: 100vh;
+    display: flex;
+    align-items: center;
   }
 
-  .gallery-card:nth-child(3) {
-    transform: translateY(1rem);
+  .gallery-pin-container {
+    width: 100%;
   }
 
-  .gallery-card:nth-child(4) {
-    transform: translateY(3rem);
+  .gallery-header {
+    margin-bottom: 3rem;
   }
+
+  .gallery-showcase {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 5rem;
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+}
+
+.showcase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.showcase-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.1rem 1.4rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  text-align: start;
+  opacity: 0.4;
+  transition: opacity 0.4s ease, background 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
+}
+
+.showcase-item:hover {
+  opacity: 0.75;
+}
+
+.showcase-item-active {
+  opacity: 1;
+  background: var(--bg-card);
+  border-color: rgba(16, 185, 129, 0.25);
+  transform: translateX(6px);
+}
+
+[dir="rtl"] .showcase-item-active {
+  transform: translateX(-6px);
+}
+
+.showcase-num {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+}
+
+.showcase-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.showcase-label {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.showcase-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.showcase-bar {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 60%;
+  border-radius: 2px;
+  background: var(--gradient-primary);
+  transition: transform 0.4s ease;
+  transform-origin: center;
+}
+
+.showcase-item-active .showcase-bar {
+  transform: translateY(-50%) scaleY(1);
+}
+
+.showcase-phone-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.showcase-phone-glow {
+  position: absolute;
+  inset: -50px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.18), transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.showcase-phone {
+  width: 280px;
+  height: 580px;
+  background: #111827;
+  border-radius: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 25px 80px -20px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+@media (max-height: 760px) and (min-width: 1024px) {
+  .showcase-phone {
+    width: 240px;
+    height: 500px;
+  }
+}
+
+.showcase-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 17px;
+}
+
+.showcase-screenshot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .gallery-card {
@@ -1301,19 +1460,25 @@ img {
 }
 
 .why-mission {
-  max-width: 40rem;
-  margin: 4rem auto 0;
+  max-width: 52rem;
+  margin: 6rem auto 2rem;
   text-align: center;
-  padding: 2.5rem;
-  border-radius: var(--radius-2xl);
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  padding: 0 1rem;
 }
 
 .why-mission-text {
-  font-size: 1.0625rem;
-  line-height: 1.8;
-  color: var(--text-secondary);
+  font-size: clamp(1.375rem, 3vw, 2.125rem);
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.mission-word {
+  /* inline-block trims trailing spaces — the margin IS the word gap */
+  display: inline-block;
+  margin-inline-end: 0.3em;
+  will-change: opacity;
 }
 
 .why-mission-highlight {
@@ -1369,9 +1534,89 @@ img {
 }
 
 .cta-inner {
-  padding: 3.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 2rem;
   text-align: center;
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.06), rgba(34, 211, 238, 0.04), transparent);
+}
+
+.cta-inner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-aurora {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.cta-aurora-1 {
+  width: 380px;
+  height: 380px;
+  top: -160px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.22), transparent 70%);
+  animation: cta-drift-1 14s ease-in-out infinite alternate;
+}
+
+.cta-aurora-2 {
+  width: 320px;
+  height: 320px;
+  bottom: -140px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 70%);
+  animation: cta-drift-2 18s ease-in-out infinite alternate;
+}
+
+@keyframes cta-drift-1 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(60%, 30%) scale(1.2);
+  }
+}
+
+@keyframes cta-drift-2 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(-50%, -30%) scale(1.15);
+  }
+}
+
+.cta-pills {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+}
+
+.cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 100px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  background: rgba(16, 185, 129, 0.07);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(167, 243, 208, 0.95);
+}
+
+.cta-pill svg {
+  color: var(--accent-emerald);
+  flex-shrink: 0;
 }
 
 .cta-emoji {
@@ -1410,7 +1655,8 @@ img {
    ═══════════════════════════════════════════════ */
 .footer-section {
   position: relative;
-  padding: 0 0 3rem;
+  padding: 0;
+  overflow: hidden;
 }
 
 .footer-separator {
@@ -1924,4 +2170,491 @@ html.lenis body {
 
 .contact-email-link:hover {
   color: var(--cyan-400);
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLL PROGRESS BAR
+   ═══════════════════════════════════════════════ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transform-origin: 0 50%;
+  z-index: 1000;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+}
+
+[dir="rtl"] .scroll-progress {
+  transform-origin: 100% 50%;
+}
+
+/* ═══════════════════════════════════════════════
+   FILM GRAIN OVERLAY
+   ═══════════════════════════════════════════════ */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ═══════════════════════════════════════════════
+   MARQUEE RIBBON
+   ═══════════════════════════════════════════════ */
+.marquee-section {
+  position: relative;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.015);
+  overflow: hidden;
+  direction: ltr;
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee-row {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding-inline: 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.marquee-item:hover {
+  color: var(--text-primary);
+}
+
+.marquee-star {
+  color: var(--accent-emerald);
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+
+/* ═══════════════════════════════════════════════
+   HERO UPGRADES — shimmer, tilt, dots
+   ═══════════════════════════════════════════════ */
+.hero-headline-shimmer {
+  background: linear-gradient(110deg, #10b981, #22d3ee, #6ee7b7, #10b981);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-slide 7s linear infinite;
+}
+
+@keyframes shimmer-slide {
+  to {
+    background-position: -250% 0;
+  }
+}
+
+.hero-phone-tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero-phone-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.hero-phone-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 100px;
+  border: none;
+  background: rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  transition: width 0.35s ease, background 0.35s ease;
+}
+
+.hero-phone-dot:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.hero-phone-dot-active {
+  width: 26px;
+  background: var(--gradient-primary);
+}
+
+/* ═══════════════════════════════════════════════
+   FEATURE CARD GHOST NUMBERS
+   ═══════════════════════════════════════════════ */
+.feature-num {
+  position: absolute;
+  top: 1rem;
+  inset-inline-end: 1.25rem;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+  transition: color 0.4s ease;
+}
+
+.spotlight-card:hover .feature-num {
+  color: rgba(16, 185, 129, 0.18);
+}
+
+/* ═══════════════════════════════════════════════
+   WHY SALATI — ANIMATED COUNTERS
+   ═══════════════════════════════════════════════ */
+.why-counters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 60rem;
+  margin: 0 auto 4rem;
+}
+
+@media (min-width: 768px) {
+  .why-counters {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.counter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  text-align: center;
+  padding: 1.75rem 1rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+
+.counter-item:hover {
+  border-color: rgba(16, 185, 129, 0.25);
+  transform: translateY(-4px);
+}
+
+.counter-number {
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.counter-label {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER GIANT WATERMARK
+   ═══════════════════════════════════════════════ */
+.footer-watermark {
+  margin-top: 3.5rem;
+  text-align: center;
+  line-height: 0.8;
+  user-select: none;
+  pointer-events: none;
+}
+
+.footer-watermark-text {
+  display: block;
+  font-size: clamp(4.5rem, 17vw, 15rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(16, 185, 129, 0.04) 60%, transparent 95%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform: translateY(0.16em);
+}
+
+/* ═══════════════════════════════════════════════
+   HERO ISLAMIC PATTERN LAYER
+   ═══════════════════════════════════════════════ */
+.hero-pattern {
+  position: absolute;
+  inset: -20% 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.045)' stroke-width='1'%3E%3Crect x='28' y='28' width='40' height='40'/%3E%3Crect x='28' y='28' width='40' height='40' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px 96px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 75%);
+}
+
+/* ═══════════════════════════════════════════════
+   PRAYER JOURNEY — SUN ARC SCROLLYTELLING
+   ═══════════════════════════════════════════════ */
+.journey-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 5rem 0;
+  overflow: hidden;
+}
+
+.journey-sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.journey-sky-dawn {
+  background:
+    radial-gradient(60% 50% at 15% 85%, rgba(251, 146, 60, 0.12), transparent 70%),
+    radial-gradient(40% 40% at 40% 90%, rgba(251, 191, 36, 0.06), transparent 70%);
+  opacity: 1;
+}
+
+.journey-sky-night {
+  background:
+    radial-gradient(55% 50% at 85% 20%, rgba(99, 102, 241, 0.14), transparent 70%),
+    radial-gradient(2px 2px at 20% 25%, rgba(255, 255, 255, 0.5), transparent 100%),
+    radial-gradient(1.5px 1.5px at 35% 15%, rgba(255, 255, 255, 0.4), transparent 100%),
+    radial-gradient(2px 2px at 55% 30%, rgba(255, 255, 255, 0.35), transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 12%, rgba(255, 255, 255, 0.45), transparent 100%),
+    radial-gradient(2px 2px at 85% 35%, rgba(255, 255, 255, 0.4), transparent 100%),
+    radial-gradient(1.5px 1.5px at 92% 8%, rgba(255, 255, 255, 0.35), transparent 100%);
+  opacity: 0;
+}
+
+.journey-container {
+  width: 100%;
+}
+
+.journey-header {
+  margin-bottom: 1rem;
+}
+
+.journey-stage {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.journey-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.journey-horizon {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+}
+
+.journey-path-ghost {
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 2;
+  stroke-dasharray: 3 8;
+  stroke-linecap: round;
+}
+
+.journey-path {
+  stroke-width: 3;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.35));
+}
+
+.journey-marker {
+  opacity: 0.3;
+}
+
+.journey-marker-dot {
+  fill: #0a0f1e;
+  stroke: var(--accent-emerald);
+  stroke-width: 2.5;
+}
+
+.journey-marker-ring {
+  fill: none;
+  stroke: var(--accent-emerald);
+  stroke-width: 1;
+  opacity: 0;
+}
+
+.journey-marker-name {
+  fill: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  letter-spacing: 0.02em;
+}
+
+.journey-marker-time {
+  fill: #94a3b8;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+}
+
+.journey-sun-core {
+  /* fill + glow are animated by GSAP (amber → sunset red) */
+  fill: #fbbf24;
+}
+
+.journey-moon {
+  fill: #e2e8f0;
+  filter: drop-shadow(0 0 10px rgba(165, 180, 252, 0.75));
+}
+
+/* Keep the journey content comfortably inside the pinned viewport on short screens */
+@media (min-width: 768px) and (max-height: 820px) {
+  .journey-stage {
+    max-width: 50rem;
+  }
+
+  .journey-header {
+    margin-bottom: 0.25rem;
+  }
+
+  .journey-header .section-subtitle {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .journey-section {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
+  .journey-marker-name {
+    font-size: 42px;
+  }
+
+  .journey-marker-time {
+    font-size: 30px;
+  }
+
+  .journey-marker-dot {
+    stroke-width: 4;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   FEATURES CONNECTING THREAD
+   ═══════════════════════════════════════════════ */
+.features-grid-wrap {
+  position: relative;
+}
+
+.features-thread {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.5;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.4));
+}
+
+@media (max-width: 1023px) {
+  .features-thread {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   WHY SALATI — GIANT EDITORIAL TEXT
+   ═══════════════════════════════════════════════ */
+.why-giant {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.why-giant-row {
+  position: absolute;
+  top: 6rem;
+  left: -20%;
+  width: 140%;
+  white-space: nowrap;
+  text-align: center;
+  font-size: clamp(5rem, 11vw, 10rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+}
+
+.why-giant-row-2 {
+  top: auto;
+  bottom: 4rem;
+  -webkit-text-stroke: 1px rgba(16, 185, 129, 0.07);
+}
+
+.why-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════
+   CTA MOSQUE SKYLINE
+   ═══════════════════════════════════════════════ */
+.cta-skyline {
+  width: min(300px, 70vw);
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5rem;
+  overflow: visible;
+}
+
+.cta-crescent {
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.7));
+}
+
+/* ═══════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+
+  .marquee-track,
+  .hero-headline-shimmer,
+  .cta-aurora,
+  .hero-badge-dot {
+    animation: none !important;
+  }
 }

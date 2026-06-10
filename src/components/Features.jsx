@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import StarBorder from "./react-bits/StarBorder";
 import SpotlightCard from "./SpotlightCard";
+import AnimatedTitle from "./AnimatedTitle";
 import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,24 +57,28 @@ const features = [
 export default function Features() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
-  const headingRef = useRef(null);
+  const threadRef = useRef(null);
 
+  // A thread that draws itself, weaving through the feature grid
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(headingRef.current.querySelectorAll(".feature-heading-word"), {
-        y: 60,
-        opacity: 0,
-        stagger: 0.08,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headingRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }, sectionRef);
-    return () => ctx.revert();
+    const path = threadRef.current;
+    if (!path) return;
+    const len = path.getTotalLength();
+    gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
+    const tween = gsap.to(path, {
+      strokeDashoffset: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current.querySelector(".features-grid"),
+        start: "top 80%",
+        end: "bottom 65%",
+        scrub: 1,
+      },
+    });
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
   }, []);
 
   return (
@@ -85,26 +90,49 @@ export default function Features() {
       </div>
 
       <div className="section-container">
-        <div ref={headingRef} className="section-header">
-          <h2 className="section-title">
-            {[t("features.title1"), t("features.title2"), t("features.title3")].map((word, i) => (
-              <span key={i} className="feature-heading-word" style={{ display: 'inline-block' }}>
-                {word}{" "}
-              </span>
-            ))}
-          </h2>
+        <div className="section-header">
+          <AnimatedTitle
+            text={`${t("features.title1")} ${t("features.title2")} ${t("features.title3")}`}
+          />
           <p className="section-subtitle">
             {t("features.subtitle")}
           </p>
         </div>
 
-        <div className="features-grid">
+        <div className="features-grid-wrap">
+          {/* Connecting thread drawn on scroll */}
+          <svg
+            className="features-thread"
+            viewBox="0 0 1000 800"
+            preserveAspectRatio="none"
+            fill="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="threadStroke" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#10b981" />
+                <stop offset="1" stopColor="#22d3ee" />
+              </linearGradient>
+            </defs>
+            <path
+              ref={threadRef}
+              d="M500 -20 C 80 120, 920 220, 500 380 C 80 540, 920 640, 500 820"
+              stroke="url(#threadStroke)"
+              strokeWidth="1.5"
+            />
+          </svg>
+
+          <div className="features-grid">
           {features.map((f, idx) => (
             <SpotlightCard
               key={idx}
               className="feature-card"
               spotlightColor={f.color}
+              delay={(idx % 3) * 0.12}
             >
+              <span className="feature-num" aria-hidden="true">
+                {String(idx + 1).padStart(2, "0")}
+              </span>
               <div className="feature-icon-wrapper">
                 <div className="feature-icon-bg" />
                 <f.icon size={22} className="feature-icon" />
@@ -116,6 +144,7 @@ export default function Features() {
               <p className="feature-desc">{t(f.descKey)}</p>
             </SpotlightCard>
           ))}
+          </div>
         </div>
       </div>
     </section>

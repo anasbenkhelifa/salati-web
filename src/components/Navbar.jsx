@@ -25,18 +25,26 @@ export default function Navbar() {
     i18n.changeLanguage(lng);
   };
 
+  // Detector can report regional codes ("en-US", "fr-FR") — normalize first
+  const baseLang = () => {
+    const lang = (i18n.language || "en").toLowerCase();
+    if (lang.startsWith("ar")) return "ar";
+    if (lang.startsWith("fr")) return "fr";
+    return "en";
+  };
+
   const cycleLanguage = () => {
-    const currentLang = i18n.language?.startsWith('ar') ? 'ar' : (i18n.language || 'en');
-    if (currentLang === 'en') changeLanguage('fr');
-    else if (currentLang === 'fr') changeLanguage('ar');
-    else changeLanguage('en');
+    const current = baseLang();
+    if (current === "en") changeLanguage("fr");
+    else if (current === "fr") changeLanguage("ar");
+    else changeLanguage("en");
   };
 
   const getLangDisplay = () => {
-    const currentLang = i18n.language?.startsWith('ar') ? 'ar' : (i18n.language || 'en');
-    if (currentLang === 'en') return 'En';
-    if (currentLang === 'fr') return 'Fr';
-    return 'ع';
+    const current = baseLang();
+    if (current === "en") return "En";
+    if (current === "fr") return "Fr";
+    return "ع";
   };
 
   return (
@@ -92,7 +100,7 @@ export default function Navbar() {
               </div>
               <div className="navbar-brand-text">
                 <p className="navbar-brand-name">{t("brandName")}</p>
-                <p className="navbar-brand-sub">Prayer Assistant</p>
+                <p className="navbar-brand-sub">{t("footer.tagline")}</p>
               </div>
             </a>
 

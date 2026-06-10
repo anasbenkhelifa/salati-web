@@ -36,7 +36,18 @@ export default function SmoothScroll({ children }) {
       });
     });
 
+    // Pin/trigger positions are measured before fonts and images settle —
+    // refresh once everything has truly loaded so they don't drift.
+    const refresh = () => ScrollTrigger.refresh();
+    if (document.readyState === "complete") {
+      setTimeout(refresh, 200);
+    } else {
+      window.addEventListener("load", refresh, { once: true });
+    }
+    document.fonts?.ready?.then(refresh);
+
     return () => {
+      window.removeEventListener("load", refresh);
       lenis.destroy();
       gsap.ticker.remove(lenis.raf);
     };

@@ -132,6 +132,18 @@ export default function Footer() {
           </button>
         </motion.div>
       </div>
+
+      {/* Giant brand watermark */}
+      <motion.div
+        className="footer-watermark"
+        aria-hidden="true"
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <span className="footer-watermark-text">{t("brandName")}</span>
+      </motion.div>
     </footer>
   );
 }
