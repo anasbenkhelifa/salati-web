@@ -489,11 +489,13 @@ img {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 0.75rem;
-  background: var(--gradient-primary);
+  /* Dark tile so the gold app mark keeps its contrast */
+  background: linear-gradient(135deg, #16203a, #0b1224);
+  border: 1px solid rgba(230, 193, 109, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 30px -6px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 30px -8px rgba(230, 193, 109, 0.35);
   position: relative;
   overflow: hidden;
 }
@@ -1779,8 +1781,9 @@ img {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 0.625rem;
-  background: var(--gradient-primary);
-  box-shadow: 0 0 20px -4px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, #16203a, #0b1224);
+  border: 1px solid rgba(230, 193, 109, 0.28);
+  box-shadow: 0 0 20px -6px rgba(230, 193, 109, 0.3);
 }
 
 .footer-brand-name {

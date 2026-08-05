@@ -20,6 +20,11 @@ const screenshots = [
     descKey: "gallery.shots.times.desc",
   },
   {
+    src: "/prayer-journal.webp",
+    labelKey: "gallery.shots.journal.label",
+    descKey: "gallery.shots.journal.desc",
+  },
+  {
     src: "/qibla.webp",
     labelKey: "gallery.shots.qibla.label",
     descKey: "gallery.shots.qibla.desc",
@@ -48,7 +53,9 @@ export default function Gallery() {
       const st = ScrollTrigger.create({
         trigger: pinRef.current,
         start: "top top",
-        end: () => "+=" + window.innerHeight * 2.4,
+        // ~0.6 viewport of scroll per screen keeps the dwell time constant
+        // as screens are added
+        end: () => "+=" + window.innerHeight * 0.6 * screenshots.length,
         pin: true,
         refreshPriority: 1,
         invalidateOnRefresh: true,

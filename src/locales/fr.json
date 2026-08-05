@@ -86,6 +86,10 @@
         "label": "Horaires de Prière",
         "desc": "Horaires précis, entièrement hors ligne"
       },
+      "journal": {
+        "label": "Journal de Prière",
+        "desc": "Suivez chaque prière et votre progression semaine après semaine"
+      },
       "qibla": {
         "label": "Boussole Qibla",
         "desc": "Direction en direct avec étalonnage"

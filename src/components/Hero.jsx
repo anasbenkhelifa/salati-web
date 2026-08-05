@@ -31,6 +31,7 @@ export default function Hero() {
   const screens = [
     "/prayer-dashboard.webp",
     "/prayer-times.webp",
+    "/prayer-journal.webp",
     "/qibla.webp",
     "/settings.webp",
   ];

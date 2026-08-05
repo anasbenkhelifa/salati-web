@@ -86,6 +86,10 @@
         "label": "Prayer Times",
         "desc": "Precise schedules, fully offline"
       },
+      "journal": {
+        "label": "Prayer Journal",
+        "desc": "Track every prayer and watch your streak grow"
+      },
       "qibla": {
         "label": "Qibla Compass",
         "desc": "Live direction with calibration"

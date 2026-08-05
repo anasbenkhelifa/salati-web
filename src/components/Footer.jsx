@@ -51,7 +51,7 @@ export default function Footer() {
           {/* Brand column */}
           <div className="footer-brand">
             <div className="footer-logo">
-              <img src="/favicon.png" alt="Salati Logo" className="footer-logo-mark" style={{ objectFit: 'cover', background: 'none' }} />
+              <img src="/favicon.png" alt="Salati Logo" className="footer-logo-mark" style={{ objectFit: 'cover' }} />
               <div>
                 <p className="footer-brand-name">{t("brandName")}</p>
                 <p className="footer-brand-tagline">{t("footer.tagline")}</p>
